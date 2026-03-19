@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>合同会社Royal 融資準備ミーティング資料</title>
+<style>
+  :root {
+    --primary: #1a365d;
+    --accent: #2b6cb0;
+    --accent-light: #bee3f8;
+    --success: #276749;
+    --success-light: #c6f6d5;
+    --warning: #c05621;
+    --warning-light: #feebc8;
+    --danger: #c53030;
+    --danger-light: #fed7d7;
+    --bg: #f7fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --text: #2d3748;
+    --text-light: #718096;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ===== Navigation ===== */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--primary);
+    color: white;
+    z-index: 100;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.1);
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .nav a:hover, .nav a.active { background: rgba(255,255,255,0.25); color: #fff; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 70px 16px 40px; }
+
+  /* ===== Slide sections ===== */
+  .slide {
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .slide-header {
+    background: var(--primary);
+    color: white;
+    padding: 16px 20px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .slide-header small { display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px; }
+  .slide-body { padding: 20px; }
+
+  /* ===== Tables ===== */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: #edf2f7; font-weight: 600; font-size: 12px; color: var(--text-light); white-space: nowrap; }
+  td { vertical-align: top; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .bold { font-weight: 700; }
+  .highlight { background: #fffbeb; }
+  .highlight-blue { background: #ebf8ff; }
+  .highlight-green { background: #f0fff4; }
+  .highlight-red { background: #fff5f5; }
+
+  /* ===== Compare columns ===== */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 640px) {
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+  .compare-card {
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .compare-card-header {
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+  }
+  .compare-card:nth-child(1) .compare-card-header { background: #ebf4ff; color: #2b6cb0; }
+  .compare-card:nth-child(2) .compare-card-header { background: #f0fff4; color: #276749; }
+  .compare-card-body { padding: 12px 16px; }
+
+  /* ===== Badges ===== */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .badge-blue { background: var(--accent-light); color: var(--accent); }
+  .badge-green { background: var(--success-light); color: var(--success); }
+  .badge-orange { background: var(--warning-light); color: var(--warning); }
+  .badge-red { background: var(--danger-light); color: var(--danger); }
+
+  /* ===== Steps ===== */
+  .steps { counter-reset: step; }
+  .step {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    counter-increment: step;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .step-content { flex: 1; }
+  .step-content strong { display: block; font-size: 14px; margin-bottom: 4px; }
+  .step-content p { font-size: 13px; color: var(--text-light); }
+
+  /* ===== Alert boxes ===== */
+  .alert {
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 13px;
+    border-left: 4px solid;
+  }
+  .alert-info { background: #ebf8ff; border-color: #3182ce; }
+  .alert-warning { background: #fffbeb; border-color: #d69e2e; }
+  .alert-danger { background: #fff5f5; border-color: #e53e3e; }
+  .alert-success { background: #f0fff4; border-color: #38a169; }
+  .alert strong { display: block; margin-bottom: 4px; }
+
+  h3 { font-size: 16px; color: var(--primary); margin: 20px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--accent-light); }
+  h3:first-child { margin-top: 0; }
+  p { margin-bottom: 10px; font-size: 14px; }
+  ul, ol { margin: 8px 0 12px 20px; font-size: 13px; }
+  li { margin-bottom: 6px; }
+
+  .section-divider {
+    text-align: center;
+    padding: 32px 0;
+    font-size: 11px;
+    color: var(--text-light);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  .three-col-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 720px) {
+    .three-col-grid { grid-template-columns: 1fr; }
+  }
+  .three-col-card {
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .three-col-card-header {
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+  }
+  .three-col-card-body { padding: 10px 14px; font-size: 12px; }
+
+  .toc-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 12px 0;
+  }
+  .toc-item {
+    background: #edf2f7;
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .toc-item:hover { background: #e2e8f0; }
+  .toc-item small { display: block; font-weight: 400; color: var(--text-light); margin-top: 4px; font-size: 11px; }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <a href="#top" class="active">TOP</a>
+  <a href="#slide-ref">参考事例比較</a>
+  <a href="#slide-royal">Royal計画</a>
+  <a href="#slide-etax">e-Tax手順</a>
+  <a href="#slide-sbi">SBI証券</a>
+  <a href="#slide-todo">当日TODO</a>
+</nav>
+
+<div class="container" id="top">
+
+<!-- ==================== 表紙 ==================== -->
+<div class="slide">
+  <div class="slide-header" style="text-align:center; padding:32px 20px;">
+    合同会社Royal 融資準備ミーティング
+    <small style="font-size:14px; margin-top:8px;">2026年3月23日（日） 10:00〜</small>
+  </div>
+  <div class="slide-body">
+    <h3>本日のアジェンダ</h3>
+    <div class="toc-card">
+      <a href="#slide-ref" class="toc-item">
+        参考事例の比較
+        <small>四日市 vs 東大阪 vs Royal</small>
+      </a>
+      <a href="#slide-royal" class="toc-item">
+        Royal事業計画
+        <small>数字の確認・すり合わせ</small>
+      </a>
+      <a href="#slide-etax" class="toc-item">
+        確定申告書の取得
+        <small>e-TaxからPDFをダウンロード</small>
+      </a>
+      <a href="#slide-sbi" class="toc-item">
+        SBI証券 氏名確認
+        <small>口座情報の確認手順</small>
+      </a>
+      <a href="#slide-todo" class="toc-item">
+        宿題リスト
+        <small>次のアクション整理</small>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 1: 参考事例比較 ==================== -->
+<div class="section-divider" id="slide-ref">── SECTION 1 ──</div>
+
+<div class="slide">
+  <div class="slide-header">
+    参考事例2件 + 合同会社Royalの比較
+    <small>銀行に持ち込む参考資料として</small>
+  </div>
+  <div class="slide-body">
+
+    <h3>基本情報の比較</h3>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr><th>項目</th><th style="background:#dbeafe;">参考① 四日市</th><th style="background:#dcfce7;">参考② 東大阪</th><th style="background:#fef3c7;">合同会社Royal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="bold">所在地</td><td>三重県四日市市</td><td>大阪府東大阪市</td><td>福岡県北九州市</td></tr>
+        <tr><td class="bold">棟数・定員</td><td>2棟 / 10名<br><span class="badge badge-blue">男6+女4</span></td><td>2棟 / 8名<br><span class="badge badge-green">男4+女4</span></td><td>2棟予定 / 9名<br><span class="badge badge-orange">1棟目4名+2棟目5名</span></td></tr>
+        <tr><td class="bold">家賃合計</td><td class="num">¥230,000/月</td><td class="num">¥268,000/月</td><td class="num">¥80,300/月（1棟目のみ）</td></tr>
+        <tr><td class="bold">地域単価</td><td class="num">10.48円</td><td class="num">10.89円</td><td class="num">10.48円</td></tr>
+        <tr><td class="bold">創業動機</td><td>子供に知的障がい<br>80/50問題</td><td>放課後デイ勤務経験</td><td><span class="badge badge-red">要ヒアリング</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>資金計画の比較</h3>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr><th>項目</th><th class="num" style="background:#dbeafe;">四日市</th><th class="num" style="background:#dcfce7;">東大阪</th><th class="num" style="background:#fef3c7;">Royal（想定）</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight"><td class="bold">必要資金 合計</td><td class="num bold">1,500万円</td><td class="num bold">1,800万円</td><td class="num bold">1,000〜2,000万円</td></tr>
+        <tr><td>　自己資金</td><td class="num">300万円</td><td class="num">300万円</td><td class="num">約400万円</td></tr>
+        <tr><td>　借入</td><td class="num">1,200万円</td><td class="num">1,500万円</td><td class="num">1,000万円〜</td></tr>
+        <tr><td>設備資金（内装・消防等）</td><td class="num">830万円</td><td class="num">692万円</td><td class="num">約97万円（1棟目）</td></tr>
+        <tr><td>運転資金</td><td class="num">670万円</td><td class="num">1,108万円</td><td class="num">調整中</td></tr>
+        <tr><td>FC加盟金</td><td class="num">—</td><td class="num">—</td><td class="num">110万円（残額）</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="alert alert-info">
+      <strong>ポイント：Royalの自己資金比率は高い</strong>
+      四日市・東大阪ともに自己資金300万円。Royalは約400万円で、自己資金比率は参考例より優位。
+    </div>
+
+    <h3>人件費の比較（月額）</h3>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr><th>職種</th><th class="num" style="background:#dbeafe;">四日市</th><th class="num" style="background:#dcfce7;">東大阪</th><th class="num" style="background:#fef3c7;">Royal（想定）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>管理者（正社員）</td><td class="num">¥300,000</td><td class="num">¥320,000</td><td class="num">—（中村さん兼務）</td></tr>
+        <tr><td>サビ管（正社員）</td><td class="num">¥300,000</td><td class="num">¥320,000</td><td class="num">¥300,000（外部雇用）</td></tr>
+        <tr><td>世話人（パート）</td><td class="num">¥176,000<br><small>@1,100円</small></td><td class="num">¥192,000<br><small>@1,200円</small></td><td class="num">¥176,000<br><small>@1,100円</small></td></tr>
+        <tr><td>生活支援員（パート）</td><td class="num">¥176,000</td><td class="num">¥192,000</td><td class="num">¥176,000</td></tr>
+        <tr><td>夜間支援員（パート）</td><td class="num">¥220,000<br><small>@1,375円</small></td><td class="num">¥240,000<br><small>@1,500円</small></td><td class="num">¥220,000<br><small>@1,375円</small></td></tr>
+        <tr class="highlight"><td class="bold">人件費合計（法定福利込）</td><td class="num bold">約¥1,471,000</td><td class="num bold">約¥1,596,000</td><td class="num bold">約¥1,012,000<br><small>※1棟目のみ</small></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>収支構造の比較（安定期・満室時）</h3>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr><th>項目</th><th class="num" style="background:#dbeafe;">四日市<br><small>2棟10名</small></th><th class="num" style="background:#dcfce7;">東大阪<br><small>2棟8名</small></th><th class="num" style="background:#fef3c7;">Royal<br><small>1棟4名</small></th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="bold">月間売上</td><td class="num">約¥2,161,000</td><td class="num">約¥2,496,000</td><td class="num">約¥1,384,000</td></tr>
+        <tr><td class="bold">月間経費（返済前）</td><td class="num">約¥1,838,000</td><td class="num">約¥2,182,000</td><td class="num">約¥1,319,000</td></tr>
+        <tr class="highlight-green"><td class="bold">月間営業利益</td><td class="num bold" style="color:#276749;">+¥323,000</td><td class="num bold" style="color:#276749;">+¥314,000</td><td class="num bold" style="color:#c53030;">▲¥72,000</td></tr>
+        <tr class="highlight"><td class="bold">年間営業利益</td><td class="num bold">約¥3,884,000</td><td class="num bold">約¥3,768,000</td><td class="num bold" style="color:#c53030;">▲¥864,000</td></tr>
+        <tr><td class="bold">黒字化時期</td><td>1年目から</td><td>2年目から</td><td><span class="badge badge-red">2棟目必須</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="alert alert-warning">
+      <strong>重要：1棟だけでは赤字</strong>
+      参考例2件とも2棟計画で融資を通している。Royalも2棟計画で申請することが前提。1棟目だけでは満室でも月▲約7万円の赤字（返済込み）。
+    </div>
+
+    <h3>スケジュール比較</h3>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr><th>マイルストーン</th><th style="background:#dbeafe;">四日市</th><th style="background:#dcfce7;">東大阪</th><th style="background:#fef3c7;">Royal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1棟目 開設</td><td>2024年3月</td><td>2026年3月</td><td>2026年7月（見込み）</td></tr>
+        <tr><td>2棟目 開設</td><td>2024年7月（4ヶ月後）</td><td>2026年6月（3ヶ月後）</td><td>2027年1〜2月（6〜7ヶ月後）</td></tr>
+        <tr><td>満室到達</td><td>開設から約6ヶ月</td><td>開設から約4ヶ月</td><td>要確認</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== 報酬単価スライド ===== -->
+<div class="slide">
+  <div class="slide-header">
+    報酬単価テーブル（区分別・月額）
+    <small>銀行説明用：売上の根拠</small>
+  </div>
+  <div class="slide-body">
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr><th>障害支援区分</th><th class="num">基本報酬/日</th><th class="num">夜間支援加算/日</th><th class="num">合計単位/日</th><th class="num">月額給付費<br><small>@10.48円×30.4日</small></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>区分2</td><td class="num">243単位</td><td class="num">224単位</td><td class="num">467単位</td><td class="num bold">¥148,778</td></tr>
+        <tr class="highlight-blue"><td class="bold">区分3</td><td class="num">381単位</td><td class="num">280単位</td><td class="num">661単位</td><td class="num bold">¥210,581</td></tr>
+        <tr><td>区分4</td><td class="num">471単位</td><td class="num">336単位</td><td class="num">807単位</td><td class="num bold">¥257,093</td></tr>
+        <tr><td>区分5</td><td class="num">552単位</td><td class="num">336単位</td><td class="num">888単位</td><td class="num bold">¥282,902</td></tr>
+        <tr><td>区分6</td><td class="num">667単位</td><td class="num">336単位</td><td class="num">1,003単位</td><td class="num bold">¥319,534</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:12px; color:var(--text-light); margin-top:8px;">
+      ※処遇改善加算: +16.0% / 特定処遇改善加算: +0.8%<br>
+      ※利用者負担（家賃¥22,000 + 食費¥27,000 + 光熱費¥15,000 = ¥64,000/人）は別途<br>
+      ※収入の約70%は国からの給付金 → 景気に左右されにくい安定収入
+    </p>
+  </div>
+</div>
+
+<!-- ==================== SECTION 2: Royal計画 ==================== -->
+<div class="section-divider" id="slide-royal">── SECTION 2 ──</div>
+
+<div class="slide">
+  <div class="slide-header" style="background:#744210;">
+    合同会社Royal 事業計画 概要
+    <small>船越物件・1棟目の確定数字</small>
+  </div>
+  <div class="slide-body">
+
+    <h3>1棟目（船越）確定数字</h3>
+    <div style="overflow-x:auto;">
+    <table>
+      <tbody>
+        <tr><td class="bold" style="width:40%;">物件所在地</td><td>北九州市八幡西区船越二丁目27-38</td></tr>
+        <tr><td class="bold">間取り</td><td>4LDK（定員4名）</td></tr>
+        <tr><td class="bold">家賃</td><td class="num">¥80,300/月</td></tr>
+        <tr><td class="bold">物件初期費用</td><td class="num">¥263,450（礼金+日割+保証料+仲介）</td></tr>
+        <tr><td class="bold">消防設備工事</td><td class="num">¥570,000（税別）</td></tr>
+        <tr><td class="bold">内装工事</td><td class="num">約¥400,000（変動あり）</td></tr>
+        <tr><td class="bold">家具・家電・備品</td><td class="num">約¥600,000（変動あり）</td></tr>
+        <tr><td class="bold">FC加盟金残額</td><td class="num">¥1,100,000</td></tr>
+        <tr class="highlight"><td class="bold">資本金</td><td class="num bold">¥5,000,000</td></tr>
+        <tr class="highlight"><td class="bold">自己資金（残）</td><td class="num bold">約¥4,000,000</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>月間収支（1棟・満室・サビ管外部雇用時）</h3>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-card-header">売上 ¥1,384,000</div>
+        <div class="compare-card-body" style="font-size:12px;">
+          <table>
+            <tr><td>訓練等給付費</td><td class="num">¥966,000</td></tr>
+            <tr><td>処遇改善加算</td><td class="num">¥162,000</td></tr>
+            <tr><td>利用者負担</td><td class="num">¥256,000</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-header" style="background:#fff5f5; color:#c53030;">経費 ¥1,456,000</div>
+        <div class="compare-card-body" style="font-size:12px;">
+          <table>
+            <tr><td>人件費（サビ管含む）</td><td class="num">¥1,012,000</td></tr>
+            <tr><td>物件・食費・光熱費等</td><td class="num">¥285,000</td></tr>
+            <tr><td>その他固定</td><td class="num">¥22,000</td></tr>
+            <tr><td>借入返済</td><td class="num">¥137,000</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-danger" style="margin-top:16px;">
+      <strong>1棟目単独: 月▲約72,000円の赤字（返済込み）</strong>
+      → 2棟目で黒字化。中村さんがサビ管兼務できればさらに+¥30万/月改善
+    </div>
+
+    <h3>収支シミュレーション 3パターン</h3>
+    <div class="three-col-grid">
+      <div class="three-col-card">
+        <div class="three-col-card-header" style="background:#f0fff4; color:#276749;">パターンA: 楽観</div>
+        <div class="three-col-card-body">
+          <p>中村さんがサビ管兼務<br>+ 区分3以上多め</p>
+          <p class="bold" style="color:#276749;">月+¥158,000</p>
+          <p><small>9ヶ月で黒字化</small></p>
+        </div>
+      </div>
+      <div class="three-col-card">
+        <div class="three-col-card-header" style="background:#fffbeb; color:#c05621;">パターンB: 現実的</div>
+        <div class="three-col-card-body">
+          <p>サビ管外部雇用<br>+ 区分2中心</p>
+          <p class="bold" style="color:#c53030;">月▲¥72,000</p>
+          <p><small>2棟目まで赤字</small></p>
+        </div>
+      </div>
+      <div class="three-col-card">
+        <div class="three-col-card-header" style="background:#fff5f5; color:#c53030;">パターンC: 悲観</div>
+        <div class="three-col-card-body">
+          <p>入居率50%<br>+ サビ管外部</p>
+          <p class="bold" style="color:#c53030;">月▲¥500,000+</p>
+          <p><small>資金ショートリスク</small></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== SECTION 3: e-Tax ==================== -->
+<div class="section-divider" id="slide-etax">── SECTION 3 ──</div>
+
+<div class="slide">
+  <div class="slide-header" style="background:#2f855a;">
+    確定申告書のPDF取得手順
+    <small>e-Taxで申告済みの場合</small>
+  </div>
+  <div class="slide-body">
+
+    <div class="alert alert-danger">
+      <strong>重要：XML形式では銀行に提出できません</strong>
+      e-Taxからダウンロードできるのはデフォルトでは.xtx（XML）のみ。銀行融資にはPDF + 受信通知が必要です。
+    </div>
+
+    <h3>銀行に提出するもの</h3>
+    <ul>
+      <li><strong>確定申告書のPDF</strong>（直近2〜3年分）</li>
+      <li><strong>e-Taxの受信通知</strong>（受付日時・受付番号が記載）→ 収受印の代替</li>
+      <li>青色申告決算書 or 収支内訳書（該当する場合）</li>
+    </ul>
+
+    <div class="alert alert-info">
+      <strong>令和7年1月〜 収受日付印が廃止されました</strong>
+      紙の控えに押印されなくなったため、e-Tax申告者は「受信通知」が公式な申告証明になります。
+    </div>
+
+    <h3>方法①：申告書等情報取得サービス（推奨）</h3>
+    <p><span class="badge badge-green">直近3年分のPDFを取得可能</span></p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>必要なもの：マイナンバーカード</strong>
+          <p>スマホにマイナポータルアプリがインストールされていること</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>e-Taxソフト（WEB版）にアクセス</strong>
+          <p>Safari/Chromeで <code>www.e-tax.nta.go.jp</code> → 「ログイン」をタップ</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>マイナンバーカードでログイン</strong>
+          <p>「マイナンバーカードでログイン」を選択 → スマホでカードをかざして認証</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>「申告書等の閲覧を申請する」をタップ</strong>
+          <p>メニューまたは「お知らせ・受信通知」の中から該当メニューを探す</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>「所得税申告書等情報の閲覧」を選択</strong>
+          <p>提出先税務署と対象年分（例: 令和5年分、令和6年分）を入力</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <strong>電子署名を付与して送信</strong>
+          <p>マイナンバーカードで署名 → 申請完了</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-content">
+          <strong>数日後にメッセージボックスにPDFが届く</strong>
+          <p>e-Taxにログイン → メッセージボックス → PDFをダウンロード<br>
+          <span class="badge badge-orange">即日取得ではない（数日かかる）</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-warning">
+      <strong>注意：数日かかるため、今日中に申請しておくべき</strong>
+      日曜ミーティングで一緒に申請手続きを行い、後日届くPDFを受け取る段取りにする。
+    </div>
+
+    <h3>方法②：メッセージボックスから帳票表示 <span class="badge badge-green">おすすめ</span></h3>
+    <p>e-Taxで送信した申告データが180日以内の場合：</p>
+    <div class="alert alert-success" style="margin-bottom:16px;">
+      <strong>実際の操作手順を動画で撮りました</strong>
+      <a href="https://www.loom.com/share/bbf5601202a6464bb4a981d6b8dbcccf" target="_blank" rel="noopener" style="display:inline-block; margin-top:8px; padding:10px 20px; background:#2f855a; color:white; border-radius:8px; text-decoration:none; font-weight:700; font-size:14px;">Loom動画を見る</a>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>e-Taxソフト（WEB版）にログイン</strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>メッセージボックス → 「お知らせ・受信通知」</strong>
+          <p>該当する申告の受信通知を開く</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>「帳票を表示する」をクリック</strong>
+          <p>PDF形式で表示される → 保存・印刷が可能</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <strong>受信通知も忘れずに保存</strong>
+      受信通知には「受付日時」「受付番号」が記載。これが税務署の収受印の代わりになります。画面をスクリーンショットまたはPDF保存しておく。
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== SECTION 4: SBI証券 ==================== -->
+<div class="section-divider" id="slide-sbi">── SECTION 4 ──</div>
+
+<div class="slide">
+  <div class="slide-header" style="background:#6b46c1;">
+    SBI証券で登録氏名を確認する手順
+    <small>スマホブラウザから操作</small>
+  </div>
+  <div class="slide-body">
+
+    <div class="alert alert-warning">
+      <strong>スマホアプリ（株アプリ）では氏名は表示されません</strong>
+      スマホの「ブラウザ」（Safari / Chrome）からSBI証券サイトにアクセスしてください。
+    </div>
+
+    <h3>スマホブラウザでの手順</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>ブラウザで SBI証券にアクセス</strong>
+          <p>Safari / Chromeで <code>m.sbisec.co.jp</code> にアクセスしてログイン</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>メニュー（三本線 ≡）をタップ</strong>
+          <p>画面上部または下部のハンバーガーメニューを開く</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>「口座管理」をタップ</strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>「お客さま情報 設定・変更」をタップ</strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>「お客さま基本情報」の「確認・変更」をタップ</strong>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <strong>取引パスワードを入力 →「閲覧」をタップ</strong>
+          <p><span class="badge badge-orange">ログインパスワードとは別のパスワード</span><br>
+          忘れた場合: 「お忘れの方」→ 登録メールに認証番号が届く</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-content">
+          <strong>登録情報画面に氏名（漢字・カナ）が表示される</strong>
+          <p>住所・電話番号・口座番号もこの画面で確認できます</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <strong>もし「お客さま情報 設定・変更」が見つからない場合</strong>
+      ページ最下部の「PCサイトへ」をタップしてPC版に切り替え → 上部メニュー「口座管理」→「お客さま情報 設定・変更」
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== SECTION 5: TODO ==================== -->
+<div class="section-divider" id="slide-todo">── SECTION 5 ──</div>
+
+<div class="slide">
+  <div class="slide-header" style="background:#c05621;">
+    当日やること（日曜ミーティング）
+    <small>中村さんと一緒に進める作業リスト</small>
+  </div>
+  <div class="slide-body">
+
+    <h3>ミーティング中に一緒にやること</h3>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr><th>#</th><th>作業</th><th>所要</th><th>必要なもの</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-red"><td class="bold">1</td><td class="bold">e-Taxで確定申告書PDF取得を申請</td><td>15分</td><td>マイナンバーカード・暗証番号</td></tr>
+        <tr class="highlight-red"><td class="bold">2</td><td class="bold">受信通知のスクショ/PDF保存</td><td>5分</td><td>e-Taxログイン状態で</td></tr>
+        <tr><td>3</td><td>SBI証券で登録氏名を確認</td><td>5分</td><td>取引パスワード</td></tr>
+        <tr><td>4</td><td>CIC信用情報の開示申請（¥500）</td><td>10分</td><td>クレジットカード</td></tr>
+        <tr><td>5</td><td>創業動機のヒアリング（口頭→メモ）</td><td>15分</td><td>ヒアリングシート</td></tr>
+        <tr><td>6</td><td>職歴・経歴の聞き取り（箇条書き）</td><td>10分</td><td>—</td></tr>
+        <tr><td>7</td><td>借入状況の確認（住宅ローン等）</td><td>5分</td><td>—</td></tr>
+        <tr><td>8</td><td>通帳コピーの依頼（6ヶ月〜1年分）</td><td>5分</td><td>後日準備</td></tr>
+        <tr><td>9</td><td>事業所名の決定</td><td>5分</td><td>—</td></tr>
+        <tr><td>10</td><td>開設後の立ち位置（実務 or 管理のみ）確認</td><td>5分</td><td>—</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="alert alert-success">
+      <strong>最優先: #1と#2（e-Tax申請）</strong>
+      PDFは即日取得できず数日かかる。ミーティング冒頭で一番最初にやる。
+    </div>
+
+    <h3>中村さんに事前に用意してもらうもの</h3>
+    <ul>
+      <li><strong>マイナンバーカード</strong>（+ 4桁の暗証番号 / 6〜16桁の署名用パスワード）</li>
+      <li><strong>SBI証券の取引パスワード</strong></li>
+      <li><strong>クレジットカード</strong>（CIC開示用 ¥500）</li>
+      <li>法人の登記簿謄本（あれば）</li>
+    </ul>
+
+    <h3>ミーティング後の宿題</h3>
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr><th>誰が</th><th>何を</th><th>期限</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="bold">中村さん</td><td>通帳のコピー（6ヶ月〜1年分）を準備</td><td>今週中</td></tr>
+        <tr><td class="bold">中村さん</td><td>e-TaxからPDF届いたら転送</td><td>数日後</td></tr>
+        <tr><td class="bold">星崎</td><td>2棟計画の収支シミュレーション作成</td><td>来週</td></tr>
+        <tr><td class="bold">星崎</td><td>事業計画書の完成（中村さんの情報反映）</td><td>来週</td></tr>
+        <tr><td class="bold">神塚さん</td><td>賃貸借契約書・内装見積書の送付</td><td>回答待ち</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- ==================== フッター ==================== -->
+<div style="text-align:center; padding:32px; font-size:11px; color:var(--text-light);">
+  作成: 株式会社斗 | 2026年3月19日<br>
+  合同会社Royal 融資コンサルティング資料（社外秘）
+</div>
+
+</div><!-- /container -->
+
+<script>
+// Smooth scroll + active nav
+document.querySelectorAll('.nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const id = a.getAttribute('href').substring(1);
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+  });
+});
+// Update active nav on scroll
+const sections = ['top','slide-ref','slide-royal','slide-etax','slide-sbi','slide-todo'];
+window.addEventListener('scroll', () => {
+  let current = 'top';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= 120) current = id;
+  });
+  document.querySelectorAll('.nav a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+
+</body>
+</html>
